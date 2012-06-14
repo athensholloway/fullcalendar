@@ -175,6 +175,7 @@ function DayEventRenderer() {
 				html += "<div";
 			}
 			html +=
+				" id='" + event.id + "'" +
 				" class='" + classes.join(' ') + "'" +
 				" style='position:absolute;z-index:8;left:"+left+"px;" + skinCss + "'" +
 				">" +
