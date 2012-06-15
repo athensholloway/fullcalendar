@@ -305,8 +305,9 @@ function AgendaEventRenderer() {
 			">" +
 			"<div class='fc-event-inner fc-event-skin'" + skinCssAttr + ">" +
 			"<div class='fc-event-head fc-event-skin'" + skinCssAttr + ">" +
-			"<div class='fc-event-time'>" +
+			"<div class='fc-event-time fc-event-icons-container'>" +
 			htmlEscape(formatDates(event.start, event.end, opt('timeFormat'))) +
+			eventIconsHtml(event) + 
 			"</div>" +
 			"</div>" +
 			"<div class='fc-event-content'>" +
@@ -325,6 +326,15 @@ function AgendaEventRenderer() {
 		return html;
 	}
 	
+	function eventIconsHtml(event){
+		
+		var html = '<div class="fc-event-icons">';
+		html += event.registrantCount?'<span class="fc-event-registrants-count">'+event.registrantCount+'</span> <i class="fc-event-registrants-icon fc-event-icon"></i>':'';
+		html += event.hasMailingList?'<i class="fc-event-mailing-list-icon fc-event-icon"></i>':'';
+		html += event.isGeoCoded?'<i class="fc-event-geocoded-icon fc-event-icon"></i>':'';
+		html += '</div>'
+		return html;
+	}
 	
 	function bindDaySeg(event, eventElement, seg) {
 		if (isEventDraggable(event)) {

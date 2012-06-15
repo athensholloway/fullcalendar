@@ -185,8 +185,16 @@ function DayEventRenderer() {
 				">";
 			if (!event.allDay && seg.isStart) {
 				html +=
-					"<span class='fc-event-time'>" +
+					"<span class='fc-event-time fc-event-icons-container'>" +
 					htmlEscape(formatDates(event.start, event.end, opt('timeFormat'))) +
+					eventIconsHtml(event)+
+					"</span>";
+			}
+			else
+			{
+				html +=
+					"<span class='fc-event-icons-container'>" +
+					eventIconsHtml(event) +
 					"</span>";
 			}
 			html +=
@@ -208,6 +216,15 @@ function DayEventRenderer() {
 		return html;
 	}
 	
+	function eventIconsHtml(event){
+		
+		var html = '<div class="fc-event-icons">';
+		html += event.registrantCount?'<span class="fc-event-registrants-count">'+event.registrantCount+'</span> <i class="fc-event-registrants-icon fc-event-icon"></i>':'';
+		html += event.hasMailingList?'<i class="fc-event-mailing-list-icon fc-event-icon"></i>':'';
+		html += event.isGeoCoded?'<i class="fc-event-geocoded-icon fc-event-icon"></i>':'';
+		html += '</div>'
+		return html;
+	}
 	
 	function daySegElementResolve(segs, elements) { // sets seg.element
 		var i;
